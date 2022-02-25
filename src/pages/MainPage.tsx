@@ -1,68 +1,65 @@
-import React from 'react';
-import {
-    RouteComponentProps,
-} from 'react-router-dom';
+import React from "react";
+import { RouteComponentProps } from "react-router-dom";
 
 import {
-    Button,
-    ButtonGroup,
-    Typography,
-    Box,
-    makeStyles,
-} from '@material-ui/core';
-import {
-    Apps as AppsIcon,
-    Error as ErrorIcon,
-} from '@material-ui/icons';
+  Button,
+  ButtonGroup,
+  Typography,
+  Box,
+  makeStyles,
+  Fab,
+} from "@material-ui/core";
+import { Apps as AppsIcon, Error as ErrorIcon } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
-    root: {
-        marginTop: '3rem',
-    },
-    buttons: {
-        marginTop: '3rem',
-    },
+  root: {
+    marginTop: "3rem",
+  },
+  buttons: {
+    marginTop: "8rem",
+  },
+  button: {
+    margin: "2rem",
+  },
 }));
 
 // main index page for empty route
 const MainPage = (props: RouteComponentProps<{}>): JSX.Element => {
+  const classes = useStyles();
 
-    const classes = useStyles();
-
-    return (
-        <Box
-            alignItems='center'
-            display='flex'
-            flexDirection='column'
-            className={classes.root}
+  return (
+    <Box
+      alignItems="center"
+      display="flex"
+      flexDirection="column"
+      className={classes.root}
+    >
+      <Typography variant="h2" align="center">
+        Application
+      </Typography>
+      <ButtonGroup variant="contained" className={classes.buttons}>
+        {/* buttons which function as links */}
+        <Fab
+          onClick={() => props.history.push("/counter")}
+          color="primary"
+          className={classes.button}
+          variant="extended"
         >
-            <Typography
-                variant='h2'
-                align='center'
-            >
-                React-ReduxTK-Router-MUI-TS Template
-            </Typography>
-            <ButtonGroup
-                variant='contained'
-                className={classes.buttons}
-            >
-                {/* buttons which function as links */}
-                <Button
-                    onClick={() => props.history.push('/counter')}
-                    color='primary'
-                >
-                    <AppsIcon />Counter App
-                </Button>
-                <Button
-                    onClick={() => props.history.push('/nonexistent')}
-                    color='secondary'
-                >
-                    <ErrorIcon />Test 404 Page
-                </Button>
-            </ButtonGroup>
-        </Box>
-    );
-
+          <AppsIcon />
+          Counter App
+        </Fab>
+        <Fab
+          onClick={() => props.history.push("/nonexistent")}
+          color="secondary"
+          className={classes.button}
+          variant="extended"
+        >
+          <ErrorIcon />
+          Test 404 Page
+        </Fab>
+      </ButtonGroup>
+    </Box>
+  );
 };
 
 export default MainPage;
